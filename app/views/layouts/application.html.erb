@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ticketing</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/misc.css" />
+
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= javascript_include_tag "autocomplete-rails.js" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<%= render 'layouts/header' %>
+	<div class="container">
+	 	<% flash.each do |key, value| %>
+	    <div class="alert alert-<%= key %>"><%= value %></div>
+	    <% end %>
+		<%= yield %>
+	</div>
+</body>
+</html>

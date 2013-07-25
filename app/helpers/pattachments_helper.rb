@@ -1,0 +1,2 @@
+module PattachmentsHelper
+end

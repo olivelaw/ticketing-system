@@ -1,0 +1,74 @@
+  <div class="row">
+  <div class="span8">
+
+<p>
+  <b>Name:</b>
+  <%= @ticket.name %>
+</p>
+
+<p>
+  <b>Assigned to:</b>
+  <% check_name_assignedto(@ticket).each do |member| %>
+    <%= member.full_name %>
+  <%end%>
+
+</p>
+
+<p>
+  <b>Descripton:</b>
+  <%= @ticket.descripton %>
+</p>
+
+<p>
+  <b>Status:</b>
+      <%if @ticket.status == true%>
+    <td><%=@ticket.status = "Complete"%></td>
+    <%else%>
+    <td><%=@ticket.status = "Pending"%></td>
+    <%end%>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= check_name_createdby2(@ticket.createdby).full_name %>
+</p>
+</br>
+<p>
+  <b>Comments:</b>
+    <ol class="comments">
+  <%@t_comments.each do |comments|%>
+  <li>
+    <span class="content"><%= comments.comment %></span>
+    <span class="postby">
+      Posted by <%=check_name_tcomment(comments).full_name %> <%= time_ago_in_words(comments.created_at) %> ago.
+    </span>
+    </li>
+  <%end%>
+	</ol>
+  <%= will_paginate @t_comments %>
+</div>
+</div>
+</p>
+<p>
+<b>Add a comment:</b>
+<%= form_for([@ticket, @ticket.t_comments.build]) do |f| %>
+  <div class="field">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :ticket_id %>
+  </div>
+  <div class="field">
+    <%= f.text_area :comment %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Post", class: "btn btn-small"%>
+  </div>
+<% end %>
+<br />
+ <%if current_user.id == @ticket.createdby%>
+<%= link_to 'Edit', edit_project_ticket_path(@project,@ticket) %> |<%end%>
+<%= link_to 'Back', project_path(@project) %>
+</p>
+</div>
+</div>

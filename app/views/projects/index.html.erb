@@ -1,0 +1,32 @@
+<h1>Projects</h1>
+
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <%if signed_in? %>
+        <th>Action</th>
+        <th></th>
+        <th></th>
+        <%end%>
+    </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%= project.name %></td>
+    <td><%= project.description%></td>
+   <% if signed_in? %>
+     <td><%= link_to 'Show', project %></td>
+    <%if current_user.id == project.createdby%>
+    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
+    <%end%> 
+    <%end%> 
+  </tr>
+<% end %>
+</table>
+
+<br />
+   <% if signed_in? %>
+<%= link_to 'New Project', new_project_path %>
+<%end%>

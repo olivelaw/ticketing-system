@@ -1,0 +1,29 @@
+<h1>Listing tickets</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Assigned to</th>
+    <th>Descripton</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @project.tickets.each do |ticket| %>
+  <tr>
+    <td><%= ticket.name %></td>
+    <td><%= ticket.assigned_to %></td>
+    <td><%= ticket.descripton %></td>
+    <td><%= ticket.status %></td>
+    <td><%= link_to 'Show', project_ticket_path(@project, ticket) %></td>
+    <td><%= link_to 'Edit', edit_project_ticket_path(@project, ticket) %></td>
+    <td><%= link_to 'Destroy', project_ticket_path(@project, ticket), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ticket', new_project_ticket_path(@project, @ticket) %>

@@ -1,0 +1,21 @@
+<%= form_for(@ticket) do |f| %>
+
+   <div class="field">
+    <%= f.label :assigned_to %><br />
+    <%= f.text_field :assigned_to %>
+  </div>
+  <div class="field">
+    <%= f.label :descripton %><br />
+    <%= f.text_field :descripton %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.check_box :status %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :project_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Post", class: "btn btn-small"%>
+  </div>
+<% end %>

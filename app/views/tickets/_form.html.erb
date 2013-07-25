@@ -1,0 +1,30 @@
+<%= form_for :tickets, :url => project_tickets_path, :html => {multipart: true} do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.autocomplete_field :email, autocomplete_user_email_project_tickets_path,:"data-delimiter" => ', ', :placeholder => "Type in Members to Add" %>
+  </div>
+  <div class="field">
+    <%= f.label :descripton %><br />
+    <%= f.text_area :descripton %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.check_box :status %>
+  </div>
+  <div class="field">
+    <%= f.label :attachment %>
+    <%= f.file_field :attachment %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :project_id, :value => params[:project_id] %>
+  </div>
+    <div class="field">
+    <%= f.hidden_field :createdby, :value => current_user.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Post", class: "btn btn-small"%>
+  </div>
+<% end %>

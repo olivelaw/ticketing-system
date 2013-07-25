@@ -1,0 +1,24 @@
+<h2>Sign in</h2>
+
+<div class="signin">
+	<div class="signin-container">
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+		<div>
+			<%= f.email_field :email, :placeholder => "Email", :class => "signin-field" %><br/>
+			<%= f.password_field :password, :placeholder => "Password", :class => "signin-field" %>
+		</div>
+		<div class="links float-left">
+			<% if devise_mapping.rememberable? -%>
+				<div class="float-left remember">
+					<%= f.check_box :remember_me, :style => "display: inline; vertical-align: top;" %> <%= f.label :remember_me, :style => "display: inline; font-size: 10.5px !important;" %>
+				</div>
+			<% end -%>
+
+			<div class="float-right btn-signin"><%= f.submit "Sign in", :class => "btn btn-primary" %></div>
+			<% end %>	
+		</div>
+		<div class="links fp-signup">
+			<%= render "devise/shared/links" %>
+		</div>
+	</div>
+</div>

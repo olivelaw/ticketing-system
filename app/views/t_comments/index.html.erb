@@ -1,0 +1,27 @@
+<h1>Listing t_comments</h1>
+
+<table>
+  <tr>
+    <th>Ticket</th>
+    <th>User</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @t_comments.each do |t_comment| %>
+  <tr>
+    <td><%= t_comment.ticket_id %></td>
+    <td><%= t_comment.user_id %></td>
+    <td><%= t_comment.comment %></td>
+    <td><%= link_to 'Show', t_comment %></td>
+    <td><%= link_to 'Edit', edit_t_comment_path(t_comment) %></td>
+    <td><%= link_to 'Destroy', t_comment, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New T comment', new_t_comment_path %>

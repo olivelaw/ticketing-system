@@ -1,0 +1,13 @@
+<%= form_for([@project, @pattachment])  do |f| %>
+
+<p> 
+      Attachment: <%= pattachment_form.file_field :file %> 
+      <%= link_to_function "remove", "$(this).up('.pattachment').remove()" %> 
+    </p> 
+  <div class="field">
+    <%= f.hidden_field :project_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

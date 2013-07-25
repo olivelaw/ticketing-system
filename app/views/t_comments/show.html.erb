@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Ticket:</b>
+  <%= @t_comment.ticket_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @t_comment.user_id %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @t_comment.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_t_comment_path(@t_comment) %> |
+<%= link_to 'Back', t_comments_path %>

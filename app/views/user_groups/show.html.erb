@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user_group.name %>
+</p>
+<br>
+<br>
+<b>Add member:</b>
+<%= form_for([@user_group, @user_group.group_members.build]) do |f| %>
+ <div class="field">
+    <%= f.hidden_field :user_group_id %>
+  </div>
+  <div class="field">
+    <%#= f.text_field :user_id %><br />
+  <%= f.select(:user_id, User.all.collect {|u| [ u.full_name, u.id ] }, { :include_blank => true }) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add", class: "btn btn-small"%>
+  </div>
+<% end %>
+
+<% @group_members.each do |member| %>
+  <ul>
+    <li><%= member.user_id %> <%= check_name(member).full_name%></li>
+  </ul>
+<% end %>
+
+<%#= link_to 'Add Member', new_user_group_group_member_path(@user_group, @group_member) %> 
+
+<br>
+
+<%= link_to 'Edit', edit_user_group_path(@user_group) %> |
+<%= link_to 'Back', user_groups_path %>
